@@ -1,0 +1,46 @@
+﻿  Fish.cpp
+  Kethu1.cpp
+  Generating Code...
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(33,6): error C2653: 'Fish': is not a class or namespace name
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(34,9): error C2065: 'leftTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(34,41): error C2065: 'leftTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(35,9): error C2065: 'rightTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(35,42): error C2065: 'rightTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(36,5): error C2065: 'leftTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(36,19): error C2065: 'rightTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(39,6): error C2653: 'Fish': is not a class or namespace name
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(40,18): error C2065: 'posX': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(40,26): error C2065: 'movingLeft': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(40,45): error C2065: 'posX': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(40,53): error C2065: 'speed': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(41,23): error C2065: 'posX': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(41,31): error C2065: 'movingLeft': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(41,51): error C2065: 'posX': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(41,59): error C2065: 'speed': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(43,18): error C2065: 'posY': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(43,24): error C2065: 'posY': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(43,32): error C2065: 'speed': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(44,23): error C2065: 'posY': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(44,29): error C2065: 'posY': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(44,37): error C2065: 'speed': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(47,6): error C2653: 'Fish': is not a class or namespace name
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(48,5): error C2065: 'frame': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(48,14): error C2065: 'frame': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(51,9): error C2065: 'movingLeft': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(53,22): error C2065: 'frame': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(57,22): error C2065: 'frame': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,5): error C2065: 'currentClip': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,30): error C2065: 'frameWidth': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,54): error C2065: 'frameHeight': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,67): error C2065: 'frameWidth': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,79): error C2065: 'frameHeight': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(60,17): error C3079: an initializer list cannot be used as the right operand of this assignment operator
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(63,6): error C2653: 'Fish': is not a class or namespace name
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(65,35): error C2065: 'movingLeft': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(65,48): error C2065: 'leftTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(65,62): error C2065: 'rightTexture': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(67,29): error C2065: 'posX': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(67,35): error C2065: 'posY': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(67,41): error C2065: 'frameWidth': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(67,61): error C2065: 'frameHeight': undeclared identifier
+C:\Users\Nekko Chan\Desktop\eatorfeed\eatorfeed\Kethu1.cpp(69,47): error C2065: 'currentClip': undeclared identifier
