@@ -4,7 +4,7 @@
 #include "Constants.h"
 
 Fish::Fish()
-    : x(0), y(0), speed(0.05f), currentFrame(0), frameTime(0),
+    : x(0), y(0), speed(0.05f), currentFrame(0), frameTime(0), //speed
     facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
 }
 
