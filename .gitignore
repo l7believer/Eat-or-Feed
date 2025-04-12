@@ -1,0 +1,43 @@
+# Build folders
+x64/
+Debug/
+Release/
+build/
+*.obj
+*.pdb
+*.ilk
+*.log
+*.tlog/
+*.idb
+*.sdf
+*.ipch
+
+# Visual Studio files
+.vs/
+*.VC.db
+*.VC.opendb
+*.user
+*.suo
+
+# Executables
+*.exe
+
+# SDL2 DLLs (nên tự thêm lại nếu cần, không track theo Git)
+*.dll
+
+# Backup files
+*.bak
+*.tmp
+
+# Ignore res cache (optional, nếu bạn muốn tự tải hoặc build lại)
+res/
+
+# CMake or other temporary files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore generated solution files (if you regenerate often)
+*.sln
+*.vcxproj*
