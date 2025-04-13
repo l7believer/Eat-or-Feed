@@ -9,28 +9,27 @@
 class Fish {
 public:
     Fish();
-    void loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer);
-    void updatePosition(int mouseX, int mouseY);
-    /*void render(SDL_Renderer* renderer);*/
-    void render(SDL_Renderer* renderer, SDL_Rect camera);
-    void moveByDelta(int dx, int dy);
-    float getX() const;
+    void loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer); // tải sprite
+    void updatePosition(int mouseX, int mouseY); //update vị trí
+    void render(SDL_Renderer* renderer, SDL_Rect camera); //render fish
+    void moveByDelta(int dx, int dy); //Hàm di chuyển cá
+    float getX() const; 
     float getY() const;
-    //
-    bool isTurning;
-    int turnFrame;
-    int turnDirection; // 1: trái -> phải, -1: phải -> trái
+    //Update tọa độ
+    
 
 private:
     float x, y;
     float speed;
-    int currentFrame;
-    int frameTime;
-    bool facingLeft;
-    SDL_Texture* spriteLeft;
-    SDL_Texture* spriteRight;
-
-    int turnFrameTime;
+    int currentFrame;  //Sprite move
+    int frameTime; //Thời gian delay frame
+    bool facingLeft; //Hướng
+    SDL_Texture* spriteLeft; //Quay trái
+    SDL_Texture* spriteRight; //Quay phải
+    int turnFrameTime; //Delay quay đầu frame
+    bool isTurning; //trạng thái quay đầu
+    int turnFrame; //Sprite quay đầu
+    int turnDirection; // 1: trái -> phải, -1: phải -> trái
 };
 
 #endif

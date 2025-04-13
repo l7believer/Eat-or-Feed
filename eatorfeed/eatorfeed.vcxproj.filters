@@ -27,7 +27,10 @@
     <ClCompile Include="Kethu1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Kethu2.cpp">
+    <ClCompile Include="Enemymove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +47,10 @@
     <ClInclude Include="Kethu1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Kethu2.h">
+    <ClInclude Include="Enemymove.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

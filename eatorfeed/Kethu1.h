@@ -1,30 +1,36 @@
-﻿//#pragma once
-//#include <SDL.h>
-//#include <string>
-//
-//class Kethu1 {
-//public:
-//    Kethu1();
-//    ~Kethu1();
-//
-//    bool loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer);
-//    void spawnAtEdge(int screenWidth, int screenHeight); // Xuất hiện ở cạnh ngẫu nhiên
-//    void updateRandom();
-//    void render(SDL_Renderer* renderer);
-//    SDL_Rect getRect() const; // Để kiểm tra va chạm nếu cần
-//
-//
-//private:
-//    SDL_Texture* leftTexture;
-//    SDL_Texture* rightTexture;
-//    SDL_Rect currentClip;
-//    int frame;
-//    int posX, posY;
-//    int speed;
-//    bool movingLeft;
-//    int frameWidth;
-//    int frameHeight;
-//
-//    void updateAnimation();
-//    void freeSpriteSheet();
-//};
+﻿#ifndef KETHU1_H
+#define KETHU1_H
+
+#include <SDL.h>
+#include <string>
+
+class Kethu1 {
+public:
+    Kethu1();
+    void loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer); // Tải sprite
+    void updatePosition(); // Di chuyển ngẫu nhiên
+    void render(SDL_Renderer* renderer, SDL_Rect camera); // Render cá
+    float getX() const;
+    float getY() const;
+
+private:
+    float x, y; // Vị trí hiện tại
+    float targetX, targetY; // Tọa độ mục tiêu
+    float speed; // Tốc độ di chuyển
+    int currentFrame; // Sprite move
+    int frameTime; // Thời gian delay frame
+    bool facingLeft; // Hướng
+    SDL_Texture* spriteLeft; // Quay trái
+    SDL_Texture* spriteRight; // Quay phải
+
+    // Quay đầu
+    bool isTurning; // Trạng thái quay đầu
+    int turnFrame; // Sprite quay đầu
+    int turnFrameTime; // Thời gian delay frame quay đầu
+    int turnDirection; // 1: trái -> phải, -1: phải -> trái
+
+    void moveToTarget(); // Hàm di chuyển đến mục tiêu
+    void setRandomTarget(); // Hàm chọn tọa độ mục tiêu ngẫu nhiên
+};
+
+#endif

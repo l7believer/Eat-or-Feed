@@ -4,6 +4,4 @@
 #define BACKGROUND_WIDTH 4082
 #define BACKGROUND_HEIGHT 2328
 
-#define FRAME_WIDTH  (3616 / 15)
-#define FRAME_HEIGHT (485 / 4)
 

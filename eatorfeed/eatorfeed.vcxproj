@@ -136,16 +136,18 @@
   <ItemGroup>
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Kethu2.cpp" />
+    <ClCompile Include="Enemymove.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Kethu1.cpp" />
+    <ClCompile Include="Spawn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Kethu1.h" />
-    <ClInclude Include="Kethu2.h" />
+    <ClInclude Include="Enemymove.h" />
+    <ClInclude Include="Spawn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@
 
 
 Fish::Fish()
-    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.05f), currentFrame(0), frameTime(0), //speed
+    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.05f), currentFrame(0), frameTime(0),
     facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
 }
 
@@ -23,119 +23,22 @@ void Fish::loadSpriteSheet(const std::string& leftPath, const std::string& right
     SDL_FreeSurface(rightSurface);
 }
 
-
-//void Fish::updatePosition(int mouseX, int mouseY) {
-//    float dx = mouseX - x;
-//    float dy = mouseY - y;
-//    float distance = sqrt(dx * dx + dy * dy);
-//
-//    bool newFacingLeft = dx < 0;
-//
-//    if (!isTurning && newFacingLeft != facingLeft) {
-//        isTurning = true;
-//        turnFrame = 0;
-//        turnFrameTime = 0;
-//        turnDirection = (facingLeft && !newFacingLeft) ? 1 : -1;
-//    }
-//
-//    if (distance > 1) {
-//        float dirX = dx / distance;
-//        float dirY = dy / distance;
-//
-//        x += dirX * speed * 10;
-//        y += dirY * speed * 10;
-//
-//        // Chỉ cập nhật hướng khi không đang quay
-//        if (!isTurning) {
-//            facingLeft = newFacingLeft;
-//        }
-//    }
-//
-//
-//    if (distance > 1) {
-//        x += dx * speed;
-//        y += dy * speed;
-//        facingLeft = newFacingLeft;
-//    }
-//}
-//void Fish::updatePosition(int mouseX, int mouseY) {
-//    float dx = mouseX - x;
-//    float dy = mouseY - y;
-//    float distance = sqrt(dx * dx + dy * dy);
-//
-//    bool newFacingLeft = dx < 0;
-//
-//    if (!isTurning && newFacingLeft != facingLeft) {
-//        isTurning = true;
-//        turnFrame = 0;
-//        turnFrameTime = 0;
-//        turnDirection = (facingLeft && !newFacingLeft) ? 1 : -1;
-//    }
-//
-//    //if (distance > 1) {
-//    //    float dirX = dx / distance;
-//    //    float dirY = dy / distance;
-//
-//    //    x += dirX * speed ;
-//    //    y += dirY * speed ;
-//
-//    //    // Chỉ cập nhật hướng khi không đang quay
-//    //    if (!isTurning) {
-//    //        facingLeft = newFacingLeft;
-//    //    }
-//    //}
-//
-//    if (distance > 1) {
-//        x += dx * speed;
-//        y += dy * speed;
-//        facingLeft = newFacingLeft;
-//    }
-//}
-//void Fish::updatePosition(int mouseX, int mouseY) {
-//    float dx = mouseX - x;
-//    float dy = mouseY - y;
-//    float distance = sqrt(dx * dx + dy * dy);
-//
-//    bool newFacingLeft = dx < 0;
-//
-//    if (!isTurning && newFacingLeft != facingLeft) {
-//        isTurning = true;
-//        turnFrame = 0;
-//        turnFrameTime = 0;
-//        turnDirection = (facingLeft && !newFacingLeft) ? 1 : -1;
-//    }
-//
-//    if (distance > 1) {
-//        // Chuẩn hóa vector hướng
-//        float dirX = dx / distance;
-//        float dirY = dy / distance;
-//
-//        // Di chuyển cá với tốc độ cố định
-//        x += dirX * speed * 1000; // Tăng tốc độ nếu cần
-//        y += dirY * speed * 1000;
-//
-//        // Cập nhật hướng nếu không đang quay
-//        if (!isTurning) {
-//            facingLeft = newFacingLeft;
-//        }
-//    }
-//}
 void Fish::updatePosition(int mouseX, int mouseY) {
     float dx = mouseX - x;
     float dy = mouseY - y;
     float distance = sqrt(dx * dx + dy * dy);
 
-    // Ngưỡng tối thiểu để xác định khi nào cá cần di chuyển
+    // Ngưỡng pixel để cá quay đầu (tránh quay đầu liên tục)
     const float distanceThreshold = 50.0f;
 
-    // Nếu khoảng cách quá nhỏ, không thay đổi hướng hoặc di chuyển
+    // Không di chuyển khi distence <
     if (distance < distanceThreshold) {
         return;
     }
 
     bool newFacingLeft = dx < 0;
 
-    // Nếu hướng mới khác hướng hiện tại và cá không đang quay đầu
+    // Quay đầu cá
     if (!isTurning && newFacingLeft != facingLeft) {
         isTurning = true;
         turnFrame = 0;
@@ -147,9 +50,9 @@ void Fish::updatePosition(int mouseX, int mouseY) {
     float dirX = dx / distance;
     float dirY = dy / distance;
 
-    // Di chuyển cá với tốc độ cố định
-    x += dirX * speed * 500;
-    y += dirY * speed * 500;
+    // Speed cố định
+    x += dirX * speed * 400;
+    y += dirY * speed * 400;
 
     // Cập nhật hướng nếu không đang quay
     if (!isTurning) {
@@ -157,13 +60,6 @@ void Fish::updatePosition(int mouseX, int mouseY) {
     }
 }
 
-
-
-
-//void Fish::render(SDL_Renderer* renderer) {
-//    SDL_Texture* currentSprite = facingLeft ? spriteLeft : spriteRight;
-//    const int FRAME_WIDTH = 3616/15;
-//    const int FRAME_HEIGHT = 485/4;
 void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
     SDL_Texture* currentSprite = facingLeft ? spriteLeft : spriteRight;
     const int frameWidth = 3616 / 15;
@@ -186,15 +82,14 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * FRAME_WIDTH,
-            row * FRAME_HEIGHT,
-            FRAME_WIDTH,
-            FRAME_HEIGHT
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight
         };
 
-        // Chậm lại ở đây
         turnFrameTime++;
-        if (turnFrameTime >= 1.5f) { // tăng lên sẽ làm animation quay đầu chậm hơn
+        if (turnFrameTime >= 1.5f) { // thời gian quay đầu
             turnFrame++;
             turnFrameTime = 0;
         }
@@ -206,7 +101,7 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
     }
     else {
         int row = 2;
-        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0};
+        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
 
         frameTime++;
@@ -218,22 +113,17 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * FRAME_WIDTH,
-            row * FRAME_HEIGHT,
-            FRAME_WIDTH,
-            FRAME_HEIGHT
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight
         };
     }
 
-    /*SDL_Rect destRect = {
-    static_cast<int>(x - (FRAME_WIDTH / 4)),
-    static_cast<int>(y - (FRAME_HEIGHT / 4)),
-    FRAME_WIDTH / 2,
-    FRAME_HEIGHT / 2
-    };*/
+  // giữ cá theo camera
     SDL_Rect destRect = {
-    static_cast<int>(x - FRAME_WIDTH / 4) - camera.x,
-    static_cast<int>(y - FRAME_HEIGHT / 4) - camera.y,
+    static_cast<int>(x - frameWidth / 4) - camera.x,
+    static_cast<int>(y - frameHeight / 4) - camera.y,
     frameWidth/2,
     frameHeight/2
     };

@@ -1,2 +1,8 @@
-﻿  Fish.cpp
+﻿  Kethu1.cpp
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(11,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(12,14): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(13,14): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   eatorfeed.vcxproj -> C:\Users\Nekko Chan\Desktop\Eat-or-Feed\x64\Debug\eatorfeed.exe

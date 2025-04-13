@@ -1,70 +1,157 @@
-﻿//#include "Kethu1.h"
-//#include <SDL_image.h>
-//
-//Kethu1::Kethu1()
-//    : leftTexture(nullptr), rightTexture(nullptr), frame(0), posX(400), posY(300), // random vi tri
-//    speed(4), movingLeft(true), frameWidth(1007 / 8), frameHeight(425 / 4) {
-//}
-//
-//Kethu1::~Kethu1() {
-//    freeSpriteSheet();
-//}
-//
-//bool Kethu1::loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer) {
-//    SDL_Surface* leftSurface = IMG_Load(leftPath.c_str());
-//    SDL_Surface* rightSurface = IMG_Load(rightPath.c_str());
-//
-//    if (!leftSurface || !rightSurface) return false;
-//
-//    // Xóa màu trắng (RGB 255,255,255)
-//    SDL_SetColorKey(leftSurface, SDL_TRUE, SDL_MapRGB(leftSurface->format, 255, 255, 255));
-//    SDL_SetColorKey(rightSurface, SDL_TRUE, SDL_MapRGB(rightSurface->format, 255, 255, 255));
-//
-//    leftTexture = SDL_CreateTextureFromSurface(renderer, leftSurface);
-//    rightTexture = SDL_CreateTextureFromSurface(renderer, rightSurface);
-//
-//    SDL_FreeSurface(leftSurface);
-//    SDL_FreeSurface(rightSurface);
-//
-//    return leftTexture && rightTexture;
-//}
-//
-//
-//void Kethu1::freeSpriteSheet() {
-//    if (leftTexture) SDL_DestroyTexture(leftTexture);
-//    if (rightTexture) SDL_DestroyTexture(rightTexture);
-//    leftTexture = rightTexture = nullptr;
-//}
-//
-//void Kethu1::updatePosition(int mouseX, int mouseY) {
-//    if (mouseX < posX) { movingLeft = true; posX -= speed; }
-//    else if (mouseX > posX) { movingLeft = false; posX += speed; }
-//
-//    if (mouseY < posY) posY -= speed;
-//    else if (mouseY > posY) posY += speed;
-//}
-//
-//void Kethu1::updateAnimation() {
-//    frame = (frame + 1) % 15;
-//    int column, row = 3;
-//
-//    if (movingLeft) {
-//        int seq[] = { 0,1,2,3,4,5,6,7,6,5,4,3,2,1,0 };
-//        column = seq[frame];
-//    }
-//    else {
-//        int seq[] = { 7,6,5,4,3,2,1,0,1,2,3,4,5,6,7 };
-//        column = seq[frame];
-//    }
-//
-//    currentClip = { column * frameWidth, (row - 1) * frameHeight, frameWidth, frameHeight };
-//}
-//
-//void Kethu1::render(SDL_Renderer* renderer) {
-//    updateAnimation();
-//    SDL_Texture* currentTexture = movingLeft ? leftTexture : rightTexture;
-//    int scale = 2; // kich thuoc chia 2
-//    SDL_Rect renderQuad = { posX, posY, frameWidth / scale, frameHeight / scale };
-//
-//    SDL_RenderCopy(renderer, currentTexture, &currentClip, &renderQuad);
-//}
+﻿#include "Kethu1.h"
+#include <SDL_image.h>
+#include <cstdlib> // Để sử dụng hàm rand()
+#include <cmath>   // Để sử dụng hàm sqrt()
+#include "Constants.h"
+#include <string>
+#include "Game.h"
+
+Kethu1::Kethu1()
+    : x((rand() % 2 == 0) ? 0 : BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
+      y(rand() % BACKGROUND_HEIGHT),              // y ngẫu nhiên từ 0 đến BACKGROUND_HEIGHT
+      targetX(rand() % BACKGROUND_WIDTH),         // targetX ngẫu nhiên
+      targetY(rand() % BACKGROUND_HEIGHT),        // targetY ngẫu nhiên
+      speed(0.01f), currentFrame(0), frameTime(0),
+      facingLeft(x == BACKGROUND_WIDTH), // Nếu x = BACKGROUND_WIDTH, quay trái
+      isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
+}
+
+void Kethu1::loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer) {
+    SDL_Surface* leftSurface = IMG_Load(leftPath.c_str());
+    SDL_Surface* rightSurface = IMG_Load(rightPath.c_str());
+
+    SDL_SetColorKey(leftSurface, SDL_TRUE, SDL_MapRGB(leftSurface->format, 255, 255, 255));
+    SDL_SetColorKey(rightSurface, SDL_TRUE, SDL_MapRGB(rightSurface->format, 255, 255, 255));
+
+    spriteLeft = SDL_CreateTextureFromSurface(renderer, leftSurface);
+    spriteRight = SDL_CreateTextureFromSurface(renderer, rightSurface);
+
+    SDL_FreeSurface(leftSurface);
+    SDL_FreeSurface(rightSurface);
+}
+
+
+void Kethu1::updatePosition() {
+    moveToTarget();
+}
+
+void Kethu1::setRandomTarget() {
+    targetX = rand() % BACKGROUND_WIDTH; // targetX ngẫu nhiên trong background
+    targetY = rand() % BACKGROUND_HEIGHT; // targetY ngẫu nhiên trong background
+}
+
+void Kethu1::moveToTarget() {
+    float dx = targetX - x;
+    float dy = targetY - y;
+    float distance = sqrt(dx * dx + dy * dy);
+
+    // Nếu đã đến gần mục tiêu, chọn mục tiêu mới
+    if (distance < 10) {
+        setRandomTarget();
+        return;
+    }
+
+    // Xác định hướng mới
+    bool newFacingLeft = dx < 0;
+
+    // Quay đầu nếu cần
+    if (!isTurning && newFacingLeft != facingLeft) {
+        isTurning = true;
+        turnFrame = 0;
+        turnFrameTime = 0;
+        turnDirection = (facingLeft && !newFacingLeft) ? 1 : -1;
+    }
+
+    // Chuẩn hóa vector hướng
+    float dirX = dx / distance;
+    float dirY = dy / distance;
+
+    // Di chuyển
+    x += dirX * speed * 500;
+    y += dirY * speed * 500;
+
+    // Giới hạn vị trí trong background
+    if (x < 0) x = 0;
+    if (x > BACKGROUND_WIDTH) x = BACKGROUND_WIDTH;
+    if (y < 0) y = 0;
+    if (y > BACKGROUND_HEIGHT) y = BACKGROUND_HEIGHT;
+
+    // Cập nhật hướng nếu không đang quay
+    if (!isTurning) {
+        facingLeft = newFacingLeft;
+    }
+}
+
+void Kethu1::render(SDL_Renderer* renderer, SDL_Rect camera) {
+    SDL_Texture* currentSprite = facingLeft ? spriteLeft : spriteRight;
+    const int frameWidth = 1889 / 15;
+    const int frameHeight = 425 / 4;
+    SDL_Rect srcRect;
+
+    if (isTurning) {
+        int row = 3;
+        int column;
+
+        if (turnDirection == 1) { // trái -> phải
+            int seq[] = { 0, 1, 2, 3, 4 };
+            column = seq[turnFrame];
+            currentSprite = spriteLeft;
+        }
+        else { // phải -> trái
+            int seq[] = { 14, 13, 12, 11, 10 };
+            column = seq[turnFrame];
+            currentSprite = spriteRight;
+        }
+
+        srcRect = {
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight
+        };
+
+        turnFrameTime++;
+        if (turnFrameTime >= 1.5f) { // thời gian quay đầu
+            turnFrame++;
+            turnFrameTime = 0;
+        }
+
+        if (turnFrame >= 5) {
+            isTurning = false;
+            facingLeft = (turnDirection == -1);
+        }
+    }
+    else {
+        int row = 2;
+        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
+
+        frameTime++;
+        if (frameTime >= 3) {
+            currentFrame = (currentFrame + 1) % SEQ_LENGTH;
+            frameTime = 0;
+        }
+
+        int column = seq[currentFrame];
+
+        srcRect = {
+            column * frameWidth+15,
+            row * frameHeight+2,
+            frameWidth-15,
+            frameHeight-2
+        };
+    }
+
+    SDL_Rect destRect = {
+    static_cast<int>(x - camera.x),
+    static_cast<int>(y - camera.y),
+    frameWidth / 2,
+    frameHeight / 2
+    };
+
+
+    SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
+}
+
+float Kethu1::getX() const { return x; }
+float Kethu1::getY() const { return y; }

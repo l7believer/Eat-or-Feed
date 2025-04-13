@@ -1,50 +1,29 @@
-﻿//#pragma once
-//#include <SDL.h>
-//#include "Fish.h"
-//
-//class Game {
-//public:
-//    Game();
-//    ~Game();
-//
-//    bool init();
-//    void run();
-//    void close();
-//    SDL_Rect camera;
-//
-//private:
-//    SDL_Window* window;
-//    SDL_Renderer* renderer;
-//    SDL_Texture* backgroundTexture;
-//    bool quit;
-//    Fish fish;
-//
-//    void handleEvents();
-//    void render();
-//};
-
-#pragma once
+﻿#pragma once
 #include <SDL.h>
 #include "Fish.h"
+#include "Kethu1.h"
 
 class Game {
 public:
     Game();
     ~Game();
 
-    bool init();
+    bool init(); //main resources
     void run();
     void close();
+    SDL_Rect camera; //Render camera theo cá
 
 private:
-    SDL_Window* window;
+    SDL_Window* window; 
     SDL_Renderer* renderer;
     SDL_Texture* backgroundTexture;
-    SDL_Rect camera; // Camera để theo dõi vị trí
-    bool quit;
+    
+    bool quit; //exit
     Fish fish;
+	Kethu1 kethu1;
 
     void handleEvents();
     void render();
-    void updateCamera(); // Cập nhật camera
+    void updateCamera();
+
 };
