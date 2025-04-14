@@ -12,6 +12,8 @@ public:
     void render(SDL_Renderer* renderer, SDL_Rect camera); // Render cá
     float getX() const;
     float getY() const;
+    SDL_Rect getCollisionBox() const;
+    void reset();
 
 private:
     float x, y; // Vị trí hiện tại

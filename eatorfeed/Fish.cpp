@@ -5,7 +5,7 @@
 
 
 Fish::Fish()
-    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.05f), currentFrame(0), frameTime(0),
+    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.03f), currentFrame(0), frameTime(0),
     facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
 }
 
@@ -140,4 +140,30 @@ void Fish::moveByDelta(int dx, int dy) {
     y += dy * speed;
     facingLeft = dx < 0;
 }
+
+SDL_Rect Fish::getCollisionBox() const {
+    const int frameWidth = 3616 / 15;
+    const int frameHeight = 485 / 4;
+
+    SDL_Rect box;
+    if (facingLeft) {
+        box = {
+            static_cast<int>(x-frameWidth/4),
+            static_cast<int>(y-frameHeight/8),
+            frameWidth / 4,
+            frameHeight / 4
+        };
+    }
+    else {
+        box = {
+            static_cast<int>(x),
+            static_cast<int>(y - frameHeight/8),
+            frameWidth / 4,
+            frameHeight / 4
+        };
+    }
+
+    return box;
+}
+
 

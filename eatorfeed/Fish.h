@@ -16,7 +16,7 @@ public:
     float getX() const; 
     float getY() const;
     //Update tọa độ
-    
+    SDL_Rect getCollisionBox() const;
 
 private:
     float x, y;
