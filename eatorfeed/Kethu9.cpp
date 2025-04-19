@@ -20,8 +20,8 @@ void Kethu9::loadSpriteSheet(const std::string& leftPath, const std::string& rig
     SDL_Surface* leftSurface = IMG_Load(leftPath.c_str());
     SDL_Surface* rightSurface = IMG_Load(rightPath.c_str());
 
-    SDL_SetColorKey(leftSurface, SDL_TRUE, SDL_MapRGB(leftSurface->format, 37, 150, 190));
-    SDL_SetColorKey(rightSurface, SDL_TRUE, SDL_MapRGB(rightSurface->format, 37, 150, 190));
+    SDL_SetColorKey(leftSurface, SDL_TRUE, SDL_MapRGB(leftSurface->format, 0, 255, 0));
+    SDL_SetColorKey(rightSurface, SDL_TRUE, SDL_MapRGB(rightSurface->format, 0, 255, 0));
 
     spriteLeft = SDL_CreateTextureFromSurface(renderer, leftSurface);
     spriteRight = SDL_CreateTextureFromSurface(renderer, rightSurface);
@@ -104,10 +104,10 @@ void Kethu9::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * frameWidth-30,
-            row * frameHeight-30,
-            frameWidth-60,
-            frameHeight-60
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight
         };
 
         turnFrameTime++;
@@ -135,9 +135,9 @@ void Kethu9::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * frameWidth+25,
+            column * frameWidth+10,
             row * frameHeight+30,
-            frameWidth-25,
+            frameWidth-10,
             frameHeight-30
         };
     }

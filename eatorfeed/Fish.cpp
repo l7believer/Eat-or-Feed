@@ -5,8 +5,8 @@
 
 
 Fish::Fish()
-    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.03f), currentFrame(0), frameTime(0),
-    facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
+    : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.02f), currentFrame(0), frameTime(0),
+    facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0), isEating(false), eatFrame(0), eatFrameTime(0) {
 }
 
 void Fish::loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer) {
@@ -66,8 +66,53 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
     const int frameHeight = 485 / 4;
     SDL_Rect srcRect;
 
+    if (isEating) {
+        int row = 0;
+        int column;
+
+        if (facingLeft) {
+            int seq[] = { 0, 1, 2, 3, 4, 5 }; // frame ăn khi quay trái
+            column = seq[eatFrame];
+            currentSprite = spriteLeft;
+        }
+        else {
+            int seq[] = { 14, 13, 12, 11, 10, 9 }; // frame ăn khi quay phải
+            column = seq[eatFrame];
+            currentSprite = spriteRight;
+        }
+
+        srcRect = {
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight
+        };
+
+        eatFrameTime++;
+        if (eatFrameTime >= 3) {
+            eatFrame++;
+            eatFrameTime = 0;
+        }
+
+        if (eatFrame >= 6) {
+            isEating = false;
+        }
+
+        SDL_Rect destRect = {
+            static_cast<int>(x - frameWidth / 4) - camera.x,
+            static_cast<int>(y - frameHeight / 4) - camera.y,
+            frameWidth / 2,
+            frameHeight / 2
+        };
+
+        SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
+        return;
+    }
+
+
+
     if (isTurning) {
-        int row = 3;
+		int row = 3; // dòng 4 là sprite quay đầu
         int column;
 
         if (turnDirection == 1) { // trái -> phải
@@ -100,7 +145,7 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
     }
     else {
-        int row = 2;
+        int row = 2; // dòng 3 là sprite di chuyển
         int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
 
@@ -165,5 +210,6 @@ SDL_Rect Fish::getCollisionBox() const {
 
     return box;
 }
+
 
 

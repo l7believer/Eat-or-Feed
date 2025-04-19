@@ -166,6 +166,13 @@
     <ClInclude Include="Kethu7.h" />
     <ClInclude Include="Kethu8.h" />
     <ClInclude Include="Kethu9.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="eatorfeed.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\x64\Debug\res\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

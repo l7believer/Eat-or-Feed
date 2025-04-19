@@ -3,7 +3,7 @@
 #include "Constants.h"
 
 
-Game::Game() : window(nullptr), renderer(nullptr), backgroundTexture(nullptr), quit(false) {}
+Game::Game() : window(nullptr), renderer(nullptr), backgroundTexture(nullptr), quit(false), isPaused(false) {}
 
 Game::~Game() {
     close();
@@ -20,7 +20,13 @@ bool Game::init() {
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    SDL_ShowCursor(SDL_DISABLE);
+    SDL_ShowCursor(SDL_ENABLE); // Hiển thị chuột khi vào menu
+
+    SDL_Surface* menuSurface = IMG_Load("res/Menu.png");
+    menuTexture = SDL_CreateTextureFromSurface(renderer, menuSurface);
+    SDL_FreeSurface(menuSurface);
+
+    inMenu = true; // Bắt đầu ở menu
 
     SDL_Surface* bg = IMG_Load("res/eq.png");
     backgroundTexture = SDL_CreateTextureFromSurface(renderer, bg);
@@ -28,6 +34,10 @@ bool Game::init() {
 
     // Khởi tạo camera
     camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+    SDL_Surface* pauseSurface = IMG_Load("res/Pause.png");
+    pauseTexture = SDL_CreateTextureFromSurface(renderer, pauseSurface);
+    SDL_FreeSurface(pauseSurface);
 
     for (int i = 0; i < 3; ++i) {
         Kethu12 enemy;
@@ -100,9 +110,49 @@ void Game::handleEvents() {
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
         if (e.type == SDL_QUIT) quit = true;
+
+        if (inMenu && e.type == SDL_MOUSEBUTTONDOWN) {
+            int mouseX = e.button.x;
+            int mouseY = e.button.y;
+
+            if (mouseX >= 679 && mouseX <= 1212 && mouseY >= 525 && mouseY <= 686) {
+                inMenu = false;
+                SDL_ShowCursor(SDL_DISABLE); // Ẩn chuột
+            }
+
+            if (mouseX >= 679 && mouseX <= 1212 && mouseY >= 717 && mouseY <= 855) {
+                quit = true;
+            }
+        }
+        if (isPaused && e.type == SDL_MOUSEBUTTONDOWN) {
+            int mouseX = e.button.x;
+            int mouseY = e.button.y;
+
+            if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 412 && mouseY <= 523) {
+				isPaused = false;
+                SDL_ShowCursor(SDL_DISABLE);
+            }
+            
+            if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 565 && mouseY <= 680) {
+                resetGame();
+				isPaused = false;
+            }
+
+			if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 722 && mouseY <= 835) {
+				quit = true;
+			}
+        }
+        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_p) {
+            isPaused = !isPaused;
+            if (isPaused) {
+                SDL_ShowCursor(SDL_ENABLE);
+            }
+            else {
+                SDL_ShowCursor(SDL_DISABLE);
+            }
+        }
     }
 
-    // Lấy tọa độ chuột
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
 
@@ -112,138 +162,136 @@ void Game::handleEvents() {
 
     SDL_Rect fishBox = fish.getCollisionBox();
 
-    for (auto& enemy : enemies12) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+    if (!isPaused) {
+        for (auto& enemy : enemies12) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies11) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            enemy.reset();
+        for (auto& enemy : enemies11) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                fish.isEating = true;
+                fish.eatFrame = 0;
+                fish.eatFrameTime = 0;
+                enemy.reset();
+            }
         }
-    }
-    for (auto& enemy : enemies10) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies10) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies9) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies9) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies8) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies8) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies7) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            enemy.reset();
+        for (auto& enemy : enemies7) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                fish.isEating = true;
+                fish.eatFrame = 0;
+                fish.eatFrameTime = 0;
+                enemy.reset();
+            }
         }
-    }
-    for (auto& enemy : enemies6) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            enemy.reset();
+        for (auto& enemy : enemies6) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                fish.isEating = true;
+                fish.eatFrame = 0;
+                fish.eatFrameTime = 0;
+                enemy.reset();
+            }
         }
-    }
-    for (auto& enemy : enemies5) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies5) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies4) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies4) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies3) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies3) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies2) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            resetGame();
+        for (auto& enemy : enemies2) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                resetGame();
+            }
         }
-    }
-    for (auto& enemy : enemies1) {
-        enemy.updatePosition();
-        SDL_Rect enemyBox = enemy.getCollisionBox();
-        if (SDL_HasIntersection(&fishBox, &enemyBox)) {
-            enemy.reset();
+        for (auto& enemy : enemies1) {
+            enemy.updatePosition();
+            SDL_Rect enemyBox = enemy.getCollisionBox();
+            if (SDL_HasIntersection(&fishBox, &enemyBox)) {
+                fish.isEating = true;
+                fish.eatFrame = 0;
+                fish.eatFrameTime = 0;
+                enemy.reset();
+            }
         }
+        fish.updatePosition(mouseX, mouseY);
     }
-
-    fish.updatePosition(mouseX, mouseY);
 }
 
 void Game::render() {
+    if (inMenu) {
+        renderMenu();
+        return;
+    }
+
     SDL_RenderClear(renderer);
 
     // Vẽ background theo camera
     SDL_RenderCopy(renderer, backgroundTexture, &camera, nullptr);
 
-    for (auto& enemy : enemies12) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies11) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies10) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies9) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies8) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies7) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies6) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies5) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies4) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies3) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies2) {
-        enemy.render(renderer, camera);
-    }
-    for (auto& enemy : enemies1) {
-        enemy.render(renderer, camera);
-    }
-    
+    for (auto& enemy : enemies12) enemy.render(renderer, camera);
+    for (auto& enemy : enemies11) enemy.render(renderer, camera);
+    for (auto& enemy : enemies10) enemy.render(renderer, camera);
+    for (auto& enemy : enemies9) enemy.render(renderer, camera);
+    for (auto& enemy : enemies8) enemy.render(renderer, camera);
+    for (auto& enemy : enemies7) enemy.render(renderer, camera);
+    for (auto& enemy : enemies6) enemy.render(renderer, camera);
+    for (auto& enemy : enemies5) enemy.render(renderer, camera);
+    for (auto& enemy : enemies4) enemy.render(renderer, camera);
+    for (auto& enemy : enemies3) enemy.render(renderer, camera);
+    for (auto& enemy : enemies2) enemy.render(renderer, camera);
+    for (auto& enemy : enemies1) enemy.render(renderer, camera);
+
     fish.render(renderer, camera);
+
+    if (isPaused) {
+        renderPause();
+    }
 
     SDL_RenderPresent(renderer);
 }
@@ -251,21 +299,24 @@ void Game::render() {
 void Game::run() {
     while (!quit) {
         handleEvents();
-        updateCamera();
+        if (!isPaused) {
+            updateCamera();
+        }
         render();
         SDL_Delay(16); //FPS
     }
 }
 
+
 void Game::close() {
-    // Giải phóng các tài nguyên khác
+    SDL_DestroyTexture(menuTexture);
     SDL_DestroyTexture(backgroundTexture);
     SDL_DestroyRenderer(renderer);
+    SDL_DestroyTexture(pauseTexture);
     SDL_DestroyWindow(window);
     IMG_Quit();
     SDL_Quit();
 }
-
 
 
 void Game::updateCamera() {
@@ -278,7 +329,6 @@ void Game::updateCamera() {
     camera.y = static_cast<int>(fishY - SCREEN_HEIGHT / 2);
 
 
-    // Camera không vượt quá biên
     if (camera.x < 0) {
         camera.x = 0;   
     }
@@ -377,6 +427,79 @@ void Game::resetGame() {
         enemies12.push_back(e);
     }
 }
+
+void Game::renderMenu() {
+    SDL_RenderClear(renderer);
+
+    // Vẽ menu nền
+    SDL_RenderCopy(renderer, menuTexture, nullptr, nullptr);
+
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    // Vùng "PLAY"
+    SDL_Rect playRect = { 679, 525, 1212 - 679, 686 - 525 };
+    // Vùng "EXIT GAME"
+    SDL_Rect exitRect = { 679, 717, 1212 - 679, 855 - 717 };
+
+    if (mouseX >= playRect.x && mouseX <= playRect.x + playRect.w &&
+        mouseY >= playRect.y && mouseY <= playRect.y + playRect.h) {
+        SDL_SetRenderDrawColor(renderer, 37, 150, 190, 190);
+        SDL_Rect underlinePlay = { 787, 655, 1212 - (787 - 679) - 787, 5 };
+        SDL_RenderFillRect(renderer, &underlinePlay);
+    }
+
+    if (mouseX >= exitRect.x && mouseX <= exitRect.x + exitRect.w &&
+        mouseY >= exitRect.y && mouseY <= exitRect.y + exitRect.h) {
+        SDL_SetRenderDrawColor(renderer, 37, 150, 190, 190);
+        SDL_Rect underlineExit = { 737, 820, 1212 - (737-679) - 737, 5 };
+        SDL_RenderFillRect(renderer, &underlineExit);
+    }
+
+    SDL_RenderPresent(renderer);
+}
+
+void Game::renderPause() {
+    int pauseWidth = 1024;
+    int pauseHeight = 1536;
+    SDL_Rect pauseRect = {
+        (SCREEN_WIDTH - pauseWidth) / 2,
+        (SCREEN_HEIGHT - pauseHeight) / 2,
+        pauseWidth,
+        pauseHeight
+    };
+    SDL_RenderCopy(renderer, pauseTexture, nullptr, &pauseRect);
+
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    SDL_Rect resumeRect = { 725, 412, 1200 - 725, 523 - 412 };
+
+    if (mouseX >= resumeRect.x && mouseX <= resumeRect.x + resumeRect.w &&
+        mouseY >= resumeRect.y && mouseY <= resumeRect.y + resumeRect.h) {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+        SDL_Rect underlinePlay = { 768, 503, 1200 - (765 - 725) - 765 - 15, 5 };
+        SDL_RenderFillRect(renderer, &underlinePlay);
+    }
+    SDL_Rect replayRect = { 725, 565, 1200 - 725, 680 - 565 };
+
+    if (mouseX >= replayRect.x && mouseX <= replayRect.x + replayRect.w &&
+        mouseY >= replayRect.y && mouseY <= replayRect.y + replayRect.h) {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+        SDL_Rect underlinePlay = { 864, 659, 1200 - (864 - 725) - 864 - 10, 5 };
+        SDL_RenderFillRect(renderer, &underlinePlay);
+    }
+    SDL_Rect quitRect = { 725, 722, 1200 - 725, 835 - 722 };
+
+    if (mouseX >= quitRect.x && mouseX <= quitRect.x + quitRect.w &&
+        mouseY >= quitRect.y && mouseY <= quitRect.y + quitRect.h) {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+        SDL_Rect underlinePlay = { 898, 811, 1200 - (898 - 725) - 898, 5 };
+        SDL_RenderFillRect(renderer, &underlinePlay);
+    }
+}
+
+
 
 
 

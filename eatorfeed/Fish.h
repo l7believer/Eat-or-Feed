@@ -16,7 +16,11 @@ public:
     float getX() const; 
     float getY() const;
     //Update tọa độ
-    SDL_Rect getCollisionBox() const;
+	SDL_Rect getCollisionBox() const; //lấy box va chạm
+    bool isEating = false;
+    int eatFrame = 0;
+    int eatFrameTime = 0;
+
 
 private:
     float x, y;
@@ -30,6 +34,7 @@ private:
     bool isTurning; //trạng thái quay đầu
     int turnFrame; //Sprite quay đầu
     int turnDirection; // 1: trái -> phải, -1: phải -> trái
+    
 };
 
 #endif

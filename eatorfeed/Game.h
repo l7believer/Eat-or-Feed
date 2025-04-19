@@ -29,9 +29,13 @@ private:
     SDL_Window* window; 
     SDL_Renderer* renderer;
     SDL_Texture* backgroundTexture;
-    
+    SDL_Texture* menuTexture;
+	bool inMenu; // Trạng thái menu
     bool quit; //exit
+    bool isPaused; // Trạng thái pause
+    SDL_Texture* pauseTexture; 
     Fish fish;
+    // nhiều kethu cùng loại
     std::vector<Kethu1> enemies1;
     std::vector<Kethu2> enemies2;
     std::vector<Kethu3> enemies3;
@@ -49,5 +53,7 @@ private:
     void render();
     void updateCamera();
     void resetGame();
+    void renderMenu();
+    void renderPause();
 
 };
