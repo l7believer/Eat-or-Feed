@@ -12,10 +12,11 @@ Link demo game: https://drive.google.com/drive/folders/1VDs4TecH6vPSWrpKV7pOc7xy
 - [Cấu trúc dự án](#cấu-trúc-dự-án)
   - [Game.cpp](#1-gamecpp)
   - [Fish.cpp](#2-fishcpp)
-  - [KethuX.cpp](#3-kethuXcpp)
+  - [KethuX.cpp](#3-kethuxcpp)
 - [Chức năng chính của game](#chức-năng-chính-của-game)
+- [Tải game chính thức](#tải-game-chính-thức)
 - [Tài nguyên đã sử dụng](#tài-nguyên-đã-sử-dụng)
-
+  
 ---
 
 ## Cấu trúc dự án
@@ -141,6 +142,13 @@ Tệp này quản lý hành vi của kẻ thù loại `KethuX`.
 3. **Tránh kẻ thù lớn hơn**: Tránh xa các kẻ thù lớn hơn cá của bạn.  
 4. **Thắng trò chơi**: Đạt được điểm số 1000 để chiến thắng.  
 5. **Trạng thái game**: Bao gồm menu, chơi, tạm dừng, thắng, và thua.
+
+---
+
+## 🔗 Tải game chính thức
+
+📦 **Phiên bản phát hành v1.0**:  
+👉 [Tải từ GitHub Releases](https://github.com/l7believer/Eat-or-Feed/releases/tag/v1.0)
 
 ---
 
