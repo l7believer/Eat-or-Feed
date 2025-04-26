@@ -104,8 +104,8 @@ void Kethu7::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column* frameWidth,
-            row* frameHeight,
+            column * frameWidth,
+            row * frameHeight,
             frameWidth ,
             frameHeight
         };
@@ -135,9 +135,9 @@ void Kethu7::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * frameWidth+5,
+            column * frameWidth + 5,
             row * frameHeight,
-            frameWidth-5,
+            frameWidth - 5,
             frameHeight
         };
     }

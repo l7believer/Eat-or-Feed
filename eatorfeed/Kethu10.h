@@ -13,6 +13,10 @@ public:
     float getX() const;
     float getY() const;
     SDL_Rect getCollisionBox() const;
+    bool isEating = false;
+    int eatFrame = 0;
+    int eatFrameTime = 0;
+    void reset();
 
 private:
     float x, y; // Vị trí hiện tại

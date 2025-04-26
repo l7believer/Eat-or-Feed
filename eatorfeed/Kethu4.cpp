@@ -7,7 +7,7 @@
 #include "Game.h"
 
 Kethu4::Kethu4()
-    : x((rand() % 1)* BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
+    : x(1 * BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
     y(rand() % BACKGROUND_HEIGHT),              // y ngẫu nhiên từ 0 đến BACKGROUND_HEIGHT
     targetX(rand() % BACKGROUND_WIDTH),         // targetX ngẫu nhiên
     targetY(rand() % BACKGROUND_HEIGHT),        // targetY ngẫu nhiên
@@ -87,6 +87,49 @@ void Kethu4::render(SDL_Renderer* renderer, SDL_Rect camera) {
     const int frameWidth = 2716 / 15;
     const int frameHeight = 544 / 3;
     SDL_Rect srcRect;
+
+    if (isEating) {
+        int row = 0;
+        int column;
+
+        if (facingLeft) {
+            int seq[] = { 0, 1, 2, 3, 4, 5 }; // frame ăn khi quay trái
+            column = seq[eatFrame];
+            currentSprite = spriteLeft;
+        }
+        else {
+            int seq[] = { 14, 13, 12, 11, 10, 9 }; // frame ăn khi quay phải
+            column = seq[eatFrame];
+            currentSprite = spriteRight;
+        }
+
+        srcRect = {
+            column * frameWidth + 2,
+            row * frameHeight + 2,
+            frameWidth - 2,
+            frameHeight - 2
+        };
+
+        eatFrameTime++;
+        if (eatFrameTime >= 1) {
+            eatFrame++;
+            eatFrameTime = 0;
+        }
+
+        if (eatFrame >= 6) {
+            isEating = false;
+        }
+
+        SDL_Rect destRect = {
+            static_cast<int>(x - camera.x),
+            static_cast<int>(y - camera.y),
+            frameWidth / 2,
+            frameHeight / 2
+        };
+
+        SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
+        return;
+    }
 
     if (isTurning) {
         int row = 2;
@@ -179,4 +222,21 @@ SDL_Rect Kethu4::getCollisionBox() const {
     }
 
     return box;
+}
+
+void Kethu4::reset() {
+    // Reset vị trí giống như constructor
+    x = (rand() % 1) * BACKGROUND_WIDTH;
+    y = rand() % BACKGROUND_HEIGHT;
+
+    // Target ngẫu nhiên
+    targetX = rand() % BACKGROUND_WIDTH;
+    targetY = rand() % BACKGROUND_HEIGHT;
+
+    // Hướng quay
+    facingLeft = (x == BACKGROUND_WIDTH);
+    isTurning = false;
+    turnFrame = 0;
+    turnFrameTime = 0;
+    turnDirection = 0;
 }

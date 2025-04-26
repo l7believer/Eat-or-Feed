@@ -14,6 +14,8 @@
 #include "Kethu11.h"
 #include "Kethu12.h"
 #include "vector"
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 class Game {
 public:
@@ -24,17 +26,41 @@ public:
     void run();
     void close();
     SDL_Rect camera; //Render camera theo cá
+    Mix_Chunk* boostSound;
+    Mix_Chunk* eatSound;
+    Mix_Chunk* menuSound;
+    Mix_Chunk* playingSound;
+    Mix_Chunk* sizeupSound;
+    Mix_Chunk* youwinSound;
+    Mix_Chunk* youloseSound;
 
 private:
-    SDL_Window* window; 
+    SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Texture* backgroundTexture;
     SDL_Texture* menuTexture;
-	bool inMenu; // Trạng thái menu
+    bool inMenu; // Trạng thái menu
     bool quit; //exit
     bool isPaused; // Trạng thái pause
-    SDL_Texture* pauseTexture; 
+    SDL_Texture* pauseTexture;
     Fish fish;
+
+    int score;
+    TTF_Font* font;
+
+    enum GameState { PLAYING, WIN, LOSE }; // Các trạng thái của game
+    GameState gameState = PLAYING;
+
+    SDL_Texture* youWinTexture = nullptr;
+    SDL_Texture* youLoseTexture = nullptr;
+
+    Uint32 winStartTime = 0;  // Thời gian bắt đầu trạng thái WIN
+    Uint32 loseStartTime = 0; // Thời gian bắt đầu trạng thái LOSE
+
+    void renderYouWin();
+    void renderYouLose();
+
+
     // nhiều kethu cùng loại
     std::vector<Kethu1> enemies1;
     std::vector<Kethu2> enemies2;

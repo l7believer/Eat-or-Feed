@@ -8,12 +8,12 @@
 
 Kethu1::Kethu1()
     : x((rand() % 1)* BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
-      y(rand() % BACKGROUND_HEIGHT),              // y ngẫu nhiên từ 0 đến BACKGROUND_HEIGHT
-      targetX(rand() % BACKGROUND_WIDTH),         // targetX ngẫu nhiên
-      targetY(rand() % BACKGROUND_HEIGHT),        // targetY ngẫu nhiên
-      speed(0.01f), currentFrame(0), frameTime(0),
-      facingLeft(x == BACKGROUND_WIDTH), // Nếu x = BACKGROUND_WIDTH, quay trái
-      isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
+    y(rand() % BACKGROUND_HEIGHT),              // y ngẫu nhiên từ 0 đến BACKGROUND_HEIGHT
+    targetX(rand() % BACKGROUND_WIDTH),         // targetX ngẫu nhiên
+    targetY(rand() % BACKGROUND_HEIGHT),        // targetY ngẫu nhiên
+    speed(0.01f), currentFrame(0), frameTime(0),
+    facingLeft(x == BACKGROUND_WIDTH), // Nếu x = BACKGROUND_WIDTH, quay trái
+    isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0) {
 }
 
 void Kethu1::loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer) {
@@ -104,10 +104,10 @@ void Kethu1::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * frameWidth+20,
-            row * frameHeight+20,
-            frameWidth-40,
-            frameHeight-40
+            column * frameWidth + 20,
+            row * frameHeight + 20,
+            frameWidth - 40,
+            frameHeight - 40
         };
 
         turnFrameTime++;
@@ -123,7 +123,7 @@ void Kethu1::render(SDL_Renderer* renderer, SDL_Rect camera) {
     }
     else {
         int row = 2;
-        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
         static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
 
         frameTime++;
@@ -135,10 +135,10 @@ void Kethu1::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * frameWidth+15,
-            row * frameHeight+2,
-            frameWidth-15,
-            frameHeight-2
+            column * frameWidth + 15,
+            row * frameHeight + 2,
+            frameWidth - 15,
+            frameHeight - 2
         };
     }
 
@@ -171,7 +171,7 @@ SDL_Rect Kethu1::getCollisionBox() const {
     }
     else {
         box = {
-            static_cast<int>(x+ frameWidth / 4),
+            static_cast<int>(x + frameWidth / 4),
             static_cast<int>(y + frameHeight / 8),
             frameWidth / 4,
             frameHeight / 4
@@ -184,7 +184,7 @@ SDL_Rect Kethu1::getCollisionBox() const {
 void Kethu1::reset() {
     // Reset vị trí giống như constructor
     x = (rand() % 1) * BACKGROUND_WIDTH;
-    y = rand() % BACKGROUND_HEIGHT; 
+    y = rand() % BACKGROUND_HEIGHT;
 
     // Target ngẫu nhiên
     targetX = rand() % BACKGROUND_WIDTH;

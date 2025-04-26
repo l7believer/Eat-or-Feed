@@ -6,7 +6,34 @@
 
 Fish::Fish()
     : x(BACKGROUND_WIDTH / 2), y(BACKGROUND_HEIGHT / 2), speed(0.02f), currentFrame(0), frameTime(0),
-    facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0), isEating(false), eatFrame(0), eatFrameTime(0) {
+    facingLeft(true), isTurning(false), turnFrame(0), turnFrameTime(0), turnDirection(0), isEating(false), eatFrame(0), eatFrameTime(0),
+    isBoosting(false), boostStartTime(0), lastBoostTime(0), scale(1.0f) { // Khởi tạo scale = 1.0
+}
+
+void Fish::setScale(float newScale) {
+    scale = newScale;
+}
+
+float Fish::getScale() const {
+    return scale;
+}
+
+void Fish::startBoost() {
+    Uint32 currentTime = SDL_GetTicks();
+    if (currentTime - lastBoostTime >= cooldownTime) {
+        isBoosting = true;
+        boostStartTime = currentTime;
+        lastBoostTime = currentTime;
+    }
+}
+
+void Fish::updateBoost() {
+    if (isBoosting) {
+        Uint32 currentTime = SDL_GetTicks();
+        if (currentTime - boostStartTime >= boostDuration) {
+            isBoosting = false;
+        }
+    }
 }
 
 void Fish::loadSpriteSheet(const std::string& leftPath, const std::string& rightPath, SDL_Renderer* renderer) {
@@ -31,7 +58,6 @@ void Fish::updatePosition(int mouseX, int mouseY) {
     // Ngưỡng pixel để cá quay đầu (tránh quay đầu liên tục)
     const float distanceThreshold = 50.0f;
 
-    // Không di chuyển khi distence <
     if (distance < distanceThreshold) {
         return;
     }
@@ -50,11 +76,12 @@ void Fish::updatePosition(int mouseX, int mouseY) {
     float dirX = dx / distance;
     float dirY = dy / distance;
 
-    // Speed cố định
-    x += dirX * speed * 400;
-    y += dirY * speed * 400;
+    // Tăng tốc nếu đang trong trạng thái boost
+    float currentSpeed = isBoosting ? speed * 2.0f : speed;
 
-    // Cập nhật hướng nếu không đang quay
+    x += dirX * currentSpeed * 400;
+    y += dirY * currentSpeed * 400;
+
     if (!isTurning) {
         facingLeft = newFacingLeft;
     }
@@ -65,6 +92,10 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
     const int frameWidth = 3616 / 15;
     const int frameHeight = 485 / 4;
     SDL_Rect srcRect;
+
+    // Tính toán kích thước dựa trên scale
+    int scaledWidth = static_cast<int>((frameWidth / 2) * scale);
+    int scaledHeight = static_cast<int>((frameHeight / 2) * scale);
 
     if (isEating) {
         int row = 0;
@@ -82,14 +113,14 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * frameWidth,
-            row * frameHeight,
-            frameWidth,
-            frameHeight
+            column * frameWidth + 2,
+            row * frameHeight + 2,
+            frameWidth - 2,
+            frameHeight - 2
         };
 
         eatFrameTime++;
-        if (eatFrameTime >= 3) {
+        if (eatFrameTime >= 1) {
             eatFrame++;
             eatFrameTime = 0;
         }
@@ -99,20 +130,18 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         SDL_Rect destRect = {
-            static_cast<int>(x - frameWidth / 4) - camera.x,
-            static_cast<int>(y - frameHeight / 4) - camera.y,
-            frameWidth / 2,
-            frameHeight / 2
+            static_cast<int>(x - scaledWidth / 2) - camera.x,
+            static_cast<int>(y - scaledHeight / 2) - camera.y,
+            scaledWidth,
+            scaledHeight
         };
 
         SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
         return;
     }
 
-
-
     if (isTurning) {
-		int row = 3; // dòng 4 là sprite quay đầu
+        int row = 3; // dòng 4 là sprite quay đầu
         int column;
 
         if (turnDirection == 1) { // trái -> phải
@@ -127,10 +156,10 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * frameWidth,
-            row * frameHeight,
-            frameWidth,
-            frameHeight
+            column * frameWidth + 2,
+            row * frameHeight + 2,
+            frameWidth - 2,
+            frameHeight - 2
         };
 
         turnFrameTime++;
@@ -146,7 +175,7 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
     }
     else {
         int row = 2; // dòng 3 là sprite di chuyển
-        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
         static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
 
         frameTime++;
@@ -158,21 +187,19 @@ void Fish::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * frameWidth,
-            row * frameHeight,
-            frameWidth,
-            frameHeight
+            column * frameWidth + 2,
+            row * frameHeight + 2,
+            frameWidth - 2,
+            frameHeight - 2
         };
     }
 
-  // giữ cá theo camera
     SDL_Rect destRect = {
-    static_cast<int>(x - frameWidth / 4) - camera.x,
-    static_cast<int>(y - frameHeight / 4) - camera.y,
-    frameWidth/2,
-    frameHeight/2
+        static_cast<int>(x - scaledWidth / 2) - camera.x,
+        static_cast<int>(y - scaledHeight / 2) - camera.y,
+        scaledWidth,
+        scaledHeight
     };
-
 
     SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
 }
@@ -189,22 +216,24 @@ void Fish::moveByDelta(int dx, int dy) {
 SDL_Rect Fish::getCollisionBox() const {
     const int frameWidth = 3616 / 15;
     const int frameHeight = 485 / 4;
+    int scaledWidth = static_cast<int>(frameWidth * scale);
+    int scaledHeight = static_cast<int>(frameHeight * scale);
 
     SDL_Rect box;
     if (facingLeft) {
         box = {
-            static_cast<int>(x-frameWidth/4),
-            static_cast<int>(y-frameHeight/8),
-            frameWidth / 4,
-            frameHeight / 4
+            static_cast<int>(x - scaledWidth / 4),
+            static_cast<int>(y - scaledHeight / 8),
+            scaledWidth / 4,
+            scaledHeight / 4
         };
     }
     else {
         box = {
             static_cast<int>(x),
-            static_cast<int>(y - frameHeight/8),
-            frameWidth / 4,
-            frameHeight / 4
+            static_cast<int>(y - scaledHeight / 8),
+            scaledWidth / 4,
+            scaledHeight / 4
         };
     }
 

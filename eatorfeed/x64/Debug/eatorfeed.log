@@ -1,11 +1,27 @@
-﻿  Kethu10.cpp
-  Kethu11.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+﻿  Fish.cpp
+  Game.cpp
+  Kethu1.cpp
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(186,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(187,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(190,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu1.cpp(191,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Kethu10.cpp
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu10.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Kethu11.cpp
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -17,19 +33,25 @@ C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(187,16): warning C
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(190,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu11.cpp(191,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu12.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu12.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu2.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu2.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu3.cpp
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -37,13 +59,20 @@ C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(12,12): warning C42
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu3.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu4.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu4.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu5.cpp
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -51,8 +80,11 @@ C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(12,12): warning C42
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu5.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu6.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu6.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu6.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu6.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu6.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -74,12 +106,15 @@ C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu7.cpp(187,16): warning C4
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu7.cpp(190,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu7.cpp(191,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu8.cpp
-C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(12,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu8.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Kethu9.cpp
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(10,8): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(11,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -87,6 +122,11 @@ C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(12,12): warning C42
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(13,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(39,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(40,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(229,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(230,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(233,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nekko Chan\Desktop\Eat-or-Feed\eatorfeed\Kethu9.cpp(234,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Main.cpp
   Generating Code...
   LINK : C:\Users\Nekko Chan\Desktop\Eat-or-Feed\x64\Debug\eatorfeed.exe not found or not built by the last incremental link; performing full link
   eatorfeed.vcxproj -> C:\Users\Nekko Chan\Desktop\Eat-or-Feed\x64\Debug\eatorfeed.exe

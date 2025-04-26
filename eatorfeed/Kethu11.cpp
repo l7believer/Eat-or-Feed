@@ -105,9 +105,9 @@ void Kethu11::render(SDL_Renderer* renderer, SDL_Rect camera) {
 
         srcRect = {
             column * frameWidth,
-            row * frameHeight+5,
+            row * frameHeight + 5,
             frameWidth ,
-            frameHeight-5
+            frameHeight - 5
         };
 
         turnFrameTime++;
@@ -123,7 +123,7 @@ void Kethu11::render(SDL_Renderer* renderer, SDL_Rect camera) {
     }
     else {
         int row = 1;
-        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+        int seq[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
         static const int SEQ_LENGTH = sizeof(seq) / sizeof(int);
 
         frameTime++;
@@ -136,9 +136,9 @@ void Kethu11::render(SDL_Renderer* renderer, SDL_Rect camera) {
 
         srcRect = {
             column * frameWidth,
-            row * frameHeight+5,
+            row * frameHeight + 5,
             frameWidth,
-            frameHeight-5
+            frameHeight - 5
         };
     }
 

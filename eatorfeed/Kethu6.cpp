@@ -7,7 +7,7 @@
 #include "Game.h"
 
 Kethu6::Kethu6()
-    : x((rand() % 1)* BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
+    : x(1 * BACKGROUND_WIDTH), // x = 0 hoặc BACKGROUND_WIDTH
     y(rand() % BACKGROUND_HEIGHT),              // y ngẫu nhiên từ 0 đến BACKGROUND_HEIGHT
     targetX(rand() % BACKGROUND_WIDTH),         // targetX ngẫu nhiên
     targetY(rand() % BACKGROUND_HEIGHT),        // targetY ngẫu nhiên
@@ -104,10 +104,10 @@ void Kethu6::render(SDL_Renderer* renderer, SDL_Rect camera) {
         }
 
         srcRect = {
-            column * frameWidth+5,
-            row * frameHeight+5,
-            frameWidth-10,
-            frameHeight-10
+            column * frameWidth + 5,
+            row * frameHeight + 5,
+            frameWidth - 10,
+            frameHeight - 10
         };
 
         turnFrameTime++;
@@ -135,10 +135,10 @@ void Kethu6::render(SDL_Renderer* renderer, SDL_Rect camera) {
         int column = seq[currentFrame];
 
         srcRect = {
-            column * frameWidth+5,
-            row * frameHeight+5,
-            frameWidth-10,
-            frameHeight-10
+            column * frameWidth + 5,
+            row * frameHeight + 5,
+            frameWidth - 10,
+            frameHeight - 10
         };
     }
 

@@ -85,8 +85,51 @@ void Kethu3::moveToTarget() {
 void Kethu3::render(SDL_Renderer* renderer, SDL_Rect camera) {
     SDL_Texture* currentSprite = facingLeft ? spriteLeft : spriteRight;
     const int frameWidth = 3795 / 14;
-    const int frameHeight = 364  / 3;
+    const int frameHeight = 364 / 3;
     SDL_Rect srcRect;
+
+    if (isEating) {
+        int row = 0;
+        int column;
+
+        if (facingLeft) {
+            int seq[] = { 0, 1, 2, 3, 4, 5 }; // frame ăn khi quay trái
+            column = seq[eatFrame];
+            currentSprite = spriteLeft;
+        }
+        else {
+            int seq[] = { 13, 12, 11, 10, 9, 8 }; // frame ăn khi quay phải
+            column = seq[eatFrame];
+            currentSprite = spriteRight;
+        }
+
+        srcRect = {
+            column * frameWidth + 2,
+            row * frameHeight + 2,
+            frameWidth - 2,
+            frameHeight - 2
+        };
+
+        eatFrameTime++;
+        if (eatFrameTime >= 1) {
+            eatFrame++;
+            eatFrameTime = 0;
+        }
+
+        if (eatFrame >= 6) {
+            isEating = false;
+        }
+
+        SDL_Rect destRect = {
+            static_cast<int>(x - camera.x),
+            static_cast<int>(y - camera.y),
+            frameWidth / 2,
+            frameHeight / 2
+        };
+
+        SDL_RenderCopy(renderer, currentSprite, &srcRect, &destRect);
+        return;
+    }
 
     if (isTurning) {
         int row = 2;
@@ -179,4 +222,21 @@ SDL_Rect Kethu3::getCollisionBox() const {
     }
 
     return box;
+}
+
+void Kethu3::reset() {
+    // Reset vị trí giống như constructor
+    x = (rand() % 1) * BACKGROUND_WIDTH;
+    y = rand() % BACKGROUND_HEIGHT;
+
+    // Target ngẫu nhiên
+    targetX = rand() % BACKGROUND_WIDTH;
+    targetY = rand() % BACKGROUND_HEIGHT;
+
+    // Hướng quay
+    facingLeft = (x == BACKGROUND_WIDTH);
+    isTurning = false;
+    turnFrame = 0;
+    turnFrameTime = 0;
+    turnDirection = 0;
 }
