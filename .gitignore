@@ -1,25 +1,28 @@
-# Ignore Visual Studio files
+# Visual Studio
 .vs/
 *.user
 *.suo
-*.VC.db
-*.vscode/
+*.vcxproj.user
 
-# Ignore build directories
-x64/
+# CMake (nếu có)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
 
-# Ignore executables and object files
-*.exe
-*.obj
-*.pdb
+# SDL2 nếu bạn thêm lib động/dll
+*.dll
 
-
-# Ignore build outputs
-x64/
-*.tlog/
-*.tlog
-*.obj
-*.ilk
+# Backup / temp files
+*.tmp
+*.bak
 *.log
-*.idb
-*.pdb
+*.cache
+*.db
+Thumbs.db
+
+
+# GitHub Copilot (user-specific files or temp data)
+*.copilot*
+*.copilot-info
+copilot.*
