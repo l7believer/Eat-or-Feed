@@ -150,7 +150,7 @@ Tệp này quản lý hành vi của kẻ thù loại `KethuX`.
   *Chatgpt*
 
 - **Icon**:  
-  *Gamevui.vn*
+  *(https://www.steamgriddb.com/game/5263822/icons)*
 
 - **Đồ họa**:  
   *(https://www.spriters-resource.com/pc_computer/feedingfrenzy/)*
