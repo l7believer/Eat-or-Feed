@@ -126,6 +126,7 @@ bool Game::init() {
     sizeupSound = Mix_LoadWAV("res/Sizeup.wav");
     youwinSound = Mix_LoadWAV("res/Youwin.wav");
     youloseSound = Mix_LoadWAV("res/Youlose.wav");
+    clickSound = Mix_LoadWAV("res/Click.wav");
 
     return true;
 }
@@ -146,11 +147,13 @@ void Game::handleEvents() {
             int mouseY = e.button.y;
 
             if (mouseX >= 679 && mouseX <= 1212 && mouseY >= 525 && mouseY <= 686) {
+                Mix_PlayChannel(2, clickSound, 0);
                 inMenu = false;
                 SDL_ShowCursor(SDL_DISABLE);
             }
 
             if (mouseX >= 679 && mouseX <= 1212 && mouseY >= 717 && mouseY <= 855) {
+                Mix_PlayChannel(2, clickSound, 0);
                 quit = true;
             }
         }
@@ -160,16 +163,19 @@ void Game::handleEvents() {
             int mouseY = e.button.y;
 
             if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 412 && mouseY <= 523) {
+                Mix_PlayChannel(2, clickSound, 0);
                 isPaused = false;
                 SDL_ShowCursor(SDL_DISABLE);
             }
 
             if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 565 && mouseY <= 680) {
+                Mix_PlayChannel(2, clickSound, 0);
                 resetGame();
                 isPaused = false;
             }
 
             if (mouseX >= 725 && mouseX <= 1200 && mouseY >= 722 && mouseY <= 835) {
+                Mix_PlayChannel(2, clickSound, 0);
                 quit = true;
             }
         }
@@ -189,11 +195,13 @@ void Game::handleEvents() {
             int mouseY = e.button.y;
 
             if (mouseX >= 726 && mouseX <= 1200 && mouseY >= 591 && mouseY <= 700) {
+                Mix_PlayChannel(2, clickSound, 0);
                 resetGame();
                 gameState = PLAYING;
             }
 
             if (mouseX >= 726 && mouseX <= 1200 && mouseY >= 725 && mouseY <= 833) {
+                Mix_PlayChannel(2, clickSound, 0);
                 quit = true;
             }
         }
@@ -203,11 +211,13 @@ void Game::handleEvents() {
             int mouseY = e.button.y;
 
             if (mouseX >= 726 && mouseX <= 1200 && mouseY >= 585 && mouseY <= 700) {
+                Mix_PlayChannel(2, clickSound, 0);
                 resetGame();
                 gameState = PLAYING;
             }
 
             if (mouseX >= 726 && mouseX <= 1200 && mouseY >= 721 && mouseY <= 826) {
+                Mix_PlayChannel(2, clickSound, 0);
                 quit = true;
             }
         }
@@ -484,12 +494,16 @@ void Game::handleEvents() {
 }
 
 void Game::render() {
-
+    
+    if (inMenu && !Mix_Playing(0)) {
+        Mix_PlayChannel(0, menuSound, -1);
+    }
+    
     if (!inMenu && Mix_Playing(0)) {
         Mix_HaltChannel(0); 
     }
 
-    if (gameState == PLAYING && !Mix_Playing(1)) {
+    if (gameState == PLAYING && !Mix_Playing(1) && !inMenu) {
         Mix_PlayChannel(1, playingSound, -1); 
     }
 
@@ -676,6 +690,7 @@ void Game::close() {
     Mix_FreeChunk(sizeupSound);
     Mix_FreeChunk(youwinSound);
     Mix_FreeChunk(youloseSound);
+    Mix_FreeChunk(clickSound);
 
     boostSound = nullptr;
     eatSound = nullptr;
@@ -684,6 +699,7 @@ void Game::close() {
     sizeupSound = nullptr;
     youwinSound = nullptr;
     youloseSound = nullptr;
+	clickSound = nullptr;
 
     Mix_CloseAudio();
 }
@@ -801,8 +817,6 @@ void Game::resetGame() {
 }
 
 void Game::renderMenu() {
-
-    Mix_PlayChannel(0, menuSound, -1);
 
     SDL_RenderClear(renderer);
 
@@ -979,19 +993,3 @@ void Game::renderYouLose() {
         SDL_RenderFillRect(renderer, &underlineQuit);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

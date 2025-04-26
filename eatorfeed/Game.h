@@ -33,6 +33,7 @@ public:
     Mix_Chunk* sizeupSound;
     Mix_Chunk* youwinSound;
     Mix_Chunk* youloseSound;
+    Mix_Chunk* clickSound;
 
 private:
     SDL_Window* window;
