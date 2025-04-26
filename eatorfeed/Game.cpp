@@ -20,19 +20,18 @@ bool Game::init() {
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    SDL_ShowCursor(SDL_ENABLE); // Hiển thị chuột khi vào menu
+    SDL_ShowCursor(SDL_ENABLE);
 
     SDL_Surface* menuSurface = IMG_Load("res/Menu.png");
     menuTexture = SDL_CreateTextureFromSurface(renderer, menuSurface);
     SDL_FreeSurface(menuSurface);
 
-    inMenu = true; // Bắt đầu ở menu
+    inMenu = true;
 
     SDL_Surface* bg = IMG_Load("res/eq.png");
     backgroundTexture = SDL_CreateTextureFromSurface(renderer, bg);
     SDL_FreeSurface(bg);
 
-    // Khởi tạo camera
     camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
     SDL_Surface* pauseSurface = IMG_Load("res/Pause.png");
@@ -486,17 +485,14 @@ void Game::handleEvents() {
 
 void Game::render() {
 
-    // Nếu không ở menu, dừng nhạc menu (kênh 0)
     if (!inMenu && Mix_Playing(0)) {
-        Mix_HaltChannel(0); // Dừng nhạc menu
+        Mix_HaltChannel(0); 
     }
 
-    // Phát nhạc chơi game nếu đang ở trạng thái PLAYING (kênh 1)
     if (gameState == PLAYING && !Mix_Playing(1)) {
-        Mix_PlayChannel(1, playingSound, -1); // Phát nhạc chơi game
+        Mix_PlayChannel(1, playingSound, -1); 
     }
 
-    // Nếu gameState không phải PLAYING, dừng nhạc chơi game (kênh 1)
     if (gameState != PLAYING && Mix_Playing(1)) {
         Mix_HaltChannel(1);
     }
@@ -532,7 +528,6 @@ void Game::render() {
         renderPause();
     }
 
-    // Kiểm tra trạng thái WIN
     if (gameState == WIN) {
         if (SDL_GetTicks() - winStartTime >= 1000) {
             SDL_ShowCursor(SDL_ENABLE);
@@ -540,7 +535,6 @@ void Game::render() {
         }
     }
 
-    // Kiểm tra trạng thái LOSE
     if (gameState == LOSE) {
         if (SDL_GetTicks() - loseStartTime >= 1000) {
             SDL_ShowCursor(SDL_ENABLE);
@@ -548,14 +542,12 @@ void Game::render() {
         }
     }
 
-    // Ghi điểm
     std::string scoreText = "Your score: " + std::to_string(score);
 
     SDL_Color textColor = { 255, 255, 255, 255 };
     SDL_Surface* textSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
 
     if (textSurface) {
-        // Tạo texture từ surface
         SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
         SDL_Rect textRect = { 20, 20, textSurface->w, textSurface->h };
@@ -698,14 +690,11 @@ void Game::close() {
 
 
 void Game::updateCamera() {
-    // Lấy vị trí của cá
     float fishX = fish.getX();
     float fishY = fish.getY();
 
-    // Cập nhật vị trí camera để theo dõi cá
     camera.x = static_cast<int>(fishX - SCREEN_WIDTH / 2);
     camera.y = static_cast<int>(fishY - SCREEN_HEIGHT / 2);
-
 
     if (camera.x < 0) {
         camera.x = 0;
@@ -724,7 +713,7 @@ void Game::updateCamera() {
 
 void Game::resetGame() {
     // Reset vị trí cá chính về giữa màn
-    fish = Fish(); // nếu Fish có constructor mặc định
+    fish = Fish();
     fish.loadSpriteSheet("res/player_left.png", "res/player_right.png", renderer);
 
     SDL_ShowCursor(SDL_DISABLE);
@@ -813,20 +802,17 @@ void Game::resetGame() {
 
 void Game::renderMenu() {
 
-    // Phát nhạc menu
     Mix_PlayChannel(0, menuSound, -1);
 
     SDL_RenderClear(renderer);
 
-    // Vẽ menu nền
     SDL_RenderCopy(renderer, menuTexture, nullptr, nullptr);
 
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    // Vùng "PLAY"
     SDL_Rect playRect = { 679, 525, 1212 - 679, 686 - 525 };
-    // Vùng "EXIT GAME"
+
     SDL_Rect exitRect = { 679, 717, 1212 - 679, 855 - 717 };
 
     if (mouseX >= playRect.x && mouseX <= playRect.x + playRect.w &&
