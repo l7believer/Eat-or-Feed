@@ -104,7 +104,7 @@ Quản lý hành vi và trạng thái của cá.
 
 ---
 
-### 3. **KethuX.cpp (nhiều Kethu)**
+### 3. **KethuX.cpp**
 Tệp này quản lý hành vi của kẻ thù loại `KethuX`.
 
 #### **Các hàm chính trong `KethuX.cpp`:**
@@ -145,7 +145,7 @@ Tệp này quản lý hành vi của kẻ thù loại `KethuX`.
 
 ---
 
-## 🔗 Tải game chính thức
+## Tải game chính thức
 
 📦 **Phiên bản phát hành v1.0**:  
 👉 [Tải từ GitHub Releases](https://github.com/l7believer/Eat-or-Feed/releases/tag/v1.0)
